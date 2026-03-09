@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title>Video Background</title>
   <style>
     * {
       margin: 0;
@@ -16,12 +16,46 @@
       overflow: hidden;
       background: #000;
     }
-    body {
-      background: url('https://raw.githubusercontent.com/dandan-187/introBGwall/main/bg.mp4') no-repeat center center fixed;
-      background-size: cover;
+
+    /* Video as background */
+    #bg-video {
+      position: fixed;          /* or absolute — fixed is usually better */
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translateX(-50%) translateY(-50%);
+      z-index: -1;              /* behind everything else */
+      object-fit: cover;        /* crops nicely like background-size: cover */
+    }
+
+    /* Optional: if you want to put content on top later */
+    .content {
+      position: relative;
+      z-index: 10;
+      color: white;
+      text-align: center;
+      padding-top: 40vh;
+      font-family: Arial, sans-serif;
     }
   </style>
 </head>
 <body>
+
+  <!-- The video element -->
+  <video id="bg-video" autoplay loop muted playsinline>
+    <source src="https://raw.githubusercontent.com/dandan-187/introBGwall/main/bg.mp4" type="video/mp4">
+    <!-- Optional fallback image if video fails to load -->
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Example content on top (optional – remove if not needed) -->
+  <div class="content">
+    <h1>Video Background Works!</h1>
+    <p>Now your MP4 should be playing behind this text.</p>
+  </div>
+
 </body>
 </html>
